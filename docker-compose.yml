@@ -1,0 +1,55 @@
+version: "3"
+services:
+  client:
+    image: node:16-alpine
+    working_dir: "/home/node/app"
+    command: ["npm", "run", "start"]
+    ports: 
+      - "3000:3000"
+    volumes: 
+      - "./client:/home/node/app"
+
+  posts:
+    image: node:16-alpine
+    working_dir: "/home/node/app"
+    command: ["npm", "run", "start"]
+    ports: 
+      - "4000:3000"
+    volumes: 
+      - "./posts:/home/node/app"
+
+  comments:
+    image: node:16-alpine
+    working_dir: "/home/node/app"
+    command: ["npm", "run", "start"]
+    ports: 
+      - "4001:3000"
+    volumes: 
+      - "./comments:/home/node/app"
+
+  query:
+    image: node:16-alpine
+    working_dir: "/home/node/app"
+    command: ["npm", "run", "start"]
+    ports: 
+      - "4002:3000"
+    volumes: 
+      - "./query:/home/node/app"
+
+  moderation:
+    image: node:16-alpine
+    working_dir: "/home/node/app"
+    command: ["npm", "run", "start"]
+    ports: 
+      - "4003:3000"
+    volumes: 
+      - "./moderation:/home/node/app"
+
+  event-bus:
+    image: node:16-alpine
+    working_dir: "/home/node/app"
+    command: ["npm", "run", "start"]
+    ports: 
+      - "4005:3000"
+    volumes: 
+      - "./event-bus:/home/node/app"
