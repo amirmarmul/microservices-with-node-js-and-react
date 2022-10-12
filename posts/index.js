@@ -10,32 +10,32 @@ app.use(cors())
 const posts = {}
 
 app.get("/posts", (req, res) => {
-    res.json(posts)
+  res.json(posts)
 })
 
 app.post("/posts/create", async (req, res) => {
-    const id = randomBytes(4).toString("hex")
-    const { title } = req.body 
+  const id = randomBytes(4).toString("hex")
+  const { title } = req.body
 
-    posts[id] = { id, title }
+  posts[id] = { id, title }
 
-    await axios.post("http://event-bus-srv:3000/events", {
-        type: "PostCreated",
-        data: {
-            id,
-            title,
-        }
-    })
+  await axios.post("http://event-bus-srv:3000/events", {
+    type: "PostCreated",
+    data: {
+      id,
+      title,
+    }
+  })
 
-    res.json(posts[id])
+  res.json(posts[id])
 })
 
 app.post("/events", (req, res) => {
-    console.log("Event Received:", req.body.type)
+  console.log("Event Received:", req.body.type)
 
-    res.end()
+  res.end()
 })
 
 app.listen(3000, () => {
-    console.log("App Listening @ 3000")
+  console.log("App Listening @ 3000")
 })
