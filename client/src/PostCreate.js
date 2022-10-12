@@ -2,35 +2,35 @@ import React, { useState } from "react"
 import axios from "axios"
 
 const PostCreate = () => {
-    const [title, setTitle] = useState("")
+  const [title, setTitle] = useState("")
 
-    const onSubmit = async (event) => {
-        event.preventDefault()
+  const onSubmit = async (event) => {
+    event.preventDefault()
 
-        await axios.post("http://posts.com/posts/create", {
-            title
-        })
+    await axios.post("http://posts.com/posts/create", {
+      title
+    })
 
-        setTitle("")
-    }
+    setTitle("")
+  }
 
-    return (
-        <div>
-            <form onSubmit={onSubmit}>
-                <div className="form-group">
-                    <label>Title</label>
-                    <input 
-                        value={title} 
-                        onChange={e => setTitle(e.target.value)}
-                        className="form-control" 
-                    />
-                </div>
-                <div>
-                    <button className="btn btn-primary">Submit</button>
-                </div>
-            </form>
+  return (
+    <div>
+      <form onSubmit={onSubmit}>
+        <div className="form-group">
+          <label>Title</label>
+          <input
+            value={title}
+            onChange={e => setTitle(e.target.value)}
+            className="form-control"
+          />
         </div>
-    )
+        <div>
+          <button className="btn btn-primary">Submit</button>
+        </div>
+      </form>
+    </div>
+  )
 }
 
 export default PostCreate
